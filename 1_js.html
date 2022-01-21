@@ -1,0 +1,106 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .tbl {
+            border: 1px solid #000000;
+            margin-top: 50px;
+        }
+        .tbl td {
+            border: 1px solid #000000;
+            min-width: 30px;
+            min-height: 10px;
+            padding: 3px;
+        }
+        .tbl td.found {
+            background-color: #0D79BC;
+        }
+    </style>
+</head>
+<body>
+<div> search text example: 7_, 7, test_6, test</div>
+<input type="text" id="search" autocomplete="off" placeholder="search text here" />
+<input type="checkbox" id="filter"><label for="filter">Скрывать строки, в которых не найдены соответствия</label>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const $search = $('#search');
+    const $filter = $('#filter');
+    let tmt;
+
+    /**
+     * @param {int} tr
+     * @param {int} td
+     */
+    function drawTable(tr, td)
+    {
+        let table = $('<table>').addClass('tbl');
+        for (let i=0; i<tr; i++) {
+            let row = $('<tr>').addClass('hidden');
+            for (let j=0; j<td; j++) {
+                let col = $('<td>').text('test_' + i + '_' + j);
+                row.append(col);
+            }
+            table.append(row);
+        }
+        $('body').append(table);
+    }
+
+    /**
+     * @param {boolean} ch
+     */
+    function trShowHide(ch)
+    {
+        $('.tbl tr').show();
+        if (ch) {
+            $('.tbl tr.hidden').hide();
+        }
+    }
+
+    /**
+     *
+     */
+    $(document).ready(function() {
+
+        /**/
+        drawTable(10, 10);
+
+        /**/
+        $search.on('keyup', function() {
+
+            clearTimeout(tmt);
+
+            $('.tbl tr').addClass('hidden');
+            $('.tbl td').removeClass('found');
+
+            let s = $.trim($(this).val());
+            if (!s.length) {
+                trShowHide($filter[0].checked);
+                return false;
+            }
+
+            tmt = setTimeout(function() {
+
+                $('.tbl').find('td').each(function() {
+
+                    if ($(this).text().indexOf(s) >= 0) {
+                        $(this).addClass('found');
+                        $(this).parent().removeClass('hidden');
+                    }
+                });
+
+                trShowHide($filter[0].checked);
+
+            }, 500);
+
+        });
+
+        /**/
+        $filter.on('change', function () {
+            trShowHide($(this)[0].checked)
+        });
+
+    });
+</script>
+</body>
+</html>
