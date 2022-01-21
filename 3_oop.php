@@ -1,5 +1,7 @@
 <?php
 /*
+Задание 3 PHP
+
 Есть три расширения файлов (txt, doc, xml, yaml, xlsx, ini).
 Необходимо написать ООП-код, который в зависимости от типа файлов,
 имел бы свою логику его обработки (саму логику писать не нужно).
@@ -23,6 +25,9 @@ class opFile {
         $this->ext = $path_info['extension'];
     }
 
+    /**
+     * @return string
+     */
     public function processFile()
     {
         $method = 'process_' . $this->ext;
@@ -33,26 +38,48 @@ class opFile {
         }
     }
 
+    /**
+     * @return string
+     */
     protected function process_txt()
     {
         return "start processing file with extension &lt;&lt;{$this->ext}&gt;&gt;";
     }
 
+    /**
+     * @return string
+     */
     protected function process_doc()
     {
         return "start processing file with extension &lt;&lt;{$this->ext}&gt;&gt;";
     }
 
+    /**
+     * @return string
+     */
     protected function process_xml()
     {
         return "start processing file with extension &lt;&lt;{$this->ext}&gt;&gt;";
     }
 
+    /**
+     * @return string
+     */
     protected function process_ini()
     {
         return "start processing file with extension &lt;&lt;{$this->ext}&gt;&gt;";
     }
 }
-
+?>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Задание 3 PHP</title>
+</head>
+<body>
+<?php
 $op = new opFile('test.doc');
 echo $op->processFile();
+?>
+</body>
+</html>
