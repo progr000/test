@@ -1,6 +1,8 @@
 <!--
 Задача 1. JS
 
+ler
+
 Нужно нарисовать  простую таблицу 10 на 10 с любыми  данными.
 Над таблицей разместить input - строку поиска. Справа от input-a поставить checkbox - "Скрывать строки, в которых не найдены соответствия"
 Нужно:  по строке ввода делаем поиск по таблице и подсветить голубым цветом любые найденные соответствия. Checkbox при нажатии скрывает лишние строки таблицы, причем его функционал должен работать как до ввода текста поиска, так и после.
@@ -8,7 +10,7 @@
 
 НЕ СТАЛ СОЗДАВАТЬ ОТДЕЛЬНЫЕ ФАЙЛЫ CSS B JS, подумал что для такого теста это не особо важно, поэтому стили и яваскрипт внес в ШТМЛ
 -->
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Задача 1. JS</title>
@@ -30,7 +32,7 @@
 </head>
 <body>
 <div> search text example: 7_, 7, test_6, test</div>
-<input type="text" id="search" autocomplete="off" placeholder="search text here" />
+<input type="text" id="search" autocomplete="off" placeholder="search text here" title="" />
 <input type="checkbox" id="filter"><label for="filter">Скрывать строки, в которых не найдены соответствия</label>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
